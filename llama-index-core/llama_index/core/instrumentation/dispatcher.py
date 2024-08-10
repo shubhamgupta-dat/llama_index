@@ -19,8 +19,7 @@ DISPATCHER_SPAN_DECORATED_ATTR = "__dispatcher_span_decorated__"
 
 # Keep for backwards compatibility
 class EventDispatcher(Protocol):
-    def __call__(self, event: BaseEvent, **kwargs) -> None:
-        ...
+    def __call__(self, event: BaseEvent, **kwargs) -> None: ...
 
 
 class Dispatcher(BaseModel):

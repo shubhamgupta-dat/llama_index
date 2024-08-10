@@ -1,4 +1,5 @@
 """Common utils for embeddings."""
+
 import json
 import re
 import uuid

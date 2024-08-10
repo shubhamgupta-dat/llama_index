@@ -1,6 +1,5 @@
 """Router components."""
 
-
 from typing import Any, Dict, List
 
 from llama_index.core.base.base_selector import BaseSelector

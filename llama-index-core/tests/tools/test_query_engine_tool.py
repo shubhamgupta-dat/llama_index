@@ -1,4 +1,5 @@
 """Test tools."""
+
 from typing import Type, cast
 
 import pytest

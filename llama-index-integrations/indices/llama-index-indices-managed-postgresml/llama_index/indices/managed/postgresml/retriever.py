@@ -79,22 +79,24 @@ class PostgresMLRetriever(BaseRetriever):
 
         results = await do_vector_search()
         return [
-            NodeWithScore(
-                node=TextNode(
-                    id_=r["document"]["id"],
-                    text=r["chunk"],
-                    metadata=r["document"]["metadata"],
-                ),
-                score=r["score"],
-            )
-            if self._rerank is None
-            else NodeWithScore(
-                node=TextNode(
-                    id_=r["document"]["id"],
-                    text=r["chunk"],
-                    metadata=r["document"]["metadata"],
-                ),
-                score=r["rerank_score"],
+            (
+                NodeWithScore(
+                    node=TextNode(
+                        id_=r["document"]["id"],
+                        text=r["chunk"],
+                        metadata=r["document"]["metadata"],
+                    ),
+                    score=r["score"],
+                )
+                if self._rerank is None
+                else NodeWithScore(
+                    node=TextNode(
+                        id_=r["document"]["id"],
+                        text=r["chunk"],
+                        metadata=r["document"]["metadata"],
+                    ),
+                    score=r["rerank_score"],
+                )
             )
             for r in results
         ]

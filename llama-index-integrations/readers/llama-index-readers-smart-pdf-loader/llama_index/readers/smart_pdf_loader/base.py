@@ -1,4 +1,5 @@
 """Smart PDF Loader."""
+
 from typing import Any, Dict, List, Optional
 
 from llama_index.core.readers.base import BaseReader
@@ -36,9 +37,11 @@ class SmartPDFLoader(BaseReader):
         for chunk in doc.chunks():
             document = Document(
                 text=chunk.to_context_text(),
-                extra_info={**extra_info, "chunk_type": chunk.tag}
-                if extra_info
-                else {"chunk_type": chunk.tag},
+                extra_info=(
+                    {**extra_info, "chunk_type": chunk.tag}
+                    if extra_info
+                    else {"chunk_type": chunk.tag}
+                ),
             )
             results.append(document)
         return results

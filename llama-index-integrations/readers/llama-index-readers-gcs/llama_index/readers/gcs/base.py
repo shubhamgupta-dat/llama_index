@@ -4,6 +4,7 @@ GCS file and directory reader.
 A loader that fetches a file or iterates through a directory on Google Cloud Storage (GCS).
 
 """
+
 import json
 from typing import Callable, Dict, List, Optional, Union
 

@@ -320,9 +320,9 @@ class MilvusVectorStore(BasePydanticVectorStore):
             entry[self.embedding_field] = node.embedding
 
             if self.enable_sparse is True:
-                entry[
-                    self.sparse_embedding_field
-                ] = self.sparse_embedding_function.encode_documents([node.text])[0]
+                entry[self.sparse_embedding_field] = (
+                    self.sparse_embedding_function.encode_documents([node.text])[0]
+                )
 
             insert_ids.append(node.node_id)
             insert_list.append(entry)

@@ -1,4 +1,5 @@
 """Init file."""
+
 from llama_index.readers.web.async_web.base import (
     AsyncWebPageReader,
 )

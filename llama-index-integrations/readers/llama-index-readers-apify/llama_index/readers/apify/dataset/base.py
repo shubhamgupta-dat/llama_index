@@ -1,4 +1,5 @@
 """Apify dataset reader."""
+
 from typing import Callable, Dict, List
 
 from llama_index.core.readers.base import BaseReader

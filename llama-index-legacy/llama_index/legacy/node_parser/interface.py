@@ -46,8 +46,7 @@ class NodeParser(TransformComponent, ABC):
         nodes: Sequence[BaseNode],
         show_progress: bool = False,
         **kwargs: Any,
-    ) -> List[BaseNode]:
-        ...
+    ) -> List[BaseNode]: ...
 
     def get_nodes_from_documents(
         self,
@@ -112,8 +111,7 @@ class NodeParser(TransformComponent, ABC):
 
 class TextSplitter(NodeParser):
     @abstractmethod
-    def split_text(self, text: str) -> List[str]:
-        ...
+    def split_text(self, text: str) -> List[str]: ...
 
     def split_texts(self, texts: List[str]) -> List[str]:
         nested_texts = [self.split_text(text) for text in texts]
@@ -136,8 +134,7 @@ class TextSplitter(NodeParser):
 
 class MetadataAwareTextSplitter(TextSplitter):
     @abstractmethod
-    def split_text_metadata_aware(self, text: str, metadata_str: str) -> List[str]:
-        ...
+    def split_text_metadata_aware(self, text: str, metadata_str: str) -> List[str]: ...
 
     def split_texts_metadata_aware(
         self, texts: List[str], metadata_strs: List[str]

@@ -23,20 +23,24 @@ from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class Filter(BaseModel):
     """
     A query request filter.
-    """ # noqa: E501
+    """  # noqa: E501
+
     key: StrictStr = Field(description="The filter key.")
     operator: StrictStr = Field(description="A query request filter operator.")
     value: StrictStr = Field(description="The filter value.")
     __properties: ClassVar[List[str]] = ["key", "operator", "value"]
 
-    @field_validator('operator')
+    @field_validator("operator")
     def operator_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['EQ', 'GT', 'LT', 'NE', 'GTE', 'LTE', 'IN', 'NIN']):
-            raise ValueError("must be one of enum values ('EQ', 'GT', 'LT', 'NE', 'GTE', 'LTE', 'IN', 'NIN')")
+        if value not in set(["EQ", "GT", "LT", "NE", "GTE", "LTE", "IN", "NIN"]):
+            raise ValueError(
+                "must be one of enum values ('EQ', 'GT', 'LT', 'NE', 'GTE', 'LTE', 'IN', 'NIN')"
+            )
         return value
 
     model_config = ConfigDict(
@@ -44,7 +48,6 @@ class Filter(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -70,8 +73,7 @@ class Filter(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -89,11 +91,11 @@ class Filter(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "key": obj.get("key"),
-            "operator": obj.get("operator"),
-            "value": obj.get("value")
-        })
+        _obj = cls.model_validate(
+            {
+                "key": obj.get("key"),
+                "operator": obj.get("operator"),
+                "value": obj.get("value"),
+            }
+        )
         return _obj
-
-

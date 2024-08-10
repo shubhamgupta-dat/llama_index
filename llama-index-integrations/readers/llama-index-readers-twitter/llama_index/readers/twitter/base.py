@@ -1,4 +1,5 @@
 """Simple reader that reads tweets of a twitter handle."""
+
 from typing import Any, List, Optional
 
 from llama_index.core.readers.base import BasePydanticReader

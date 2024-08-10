@@ -1,4 +1,5 @@
 """Test vector store indexes."""
+
 import pickle
 from typing import Any, List, cast
 

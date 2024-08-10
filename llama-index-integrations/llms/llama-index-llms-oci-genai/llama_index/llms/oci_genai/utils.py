@@ -79,9 +79,9 @@ def create_client(auth_type, auth_profile, service_endpoint):
                 oci_config=client_kwargs["config"]
             )
         elif auth_type == OCIAuthType(3).name:
-            client_kwargs[
-                "signer"
-            ] = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
+            client_kwargs["signer"] = (
+                oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
+            )
         elif auth_type == OCIAuthType(4).name:
             client_kwargs["signer"] = oci.auth.signers.get_resource_principals_signer()
         else:
@@ -151,24 +151,21 @@ def get_chat_generator() -> Any:
 
 class Provider(ABC):
     @abstractmethod
-    def completion_response_to_text(self, response: Any) -> str:
-        ...
+    def completion_response_to_text(self, response: Any) -> str: ...
 
     @abstractmethod
-    def completion_stream_to_text(self, response: Any) -> str:
-        ...
+    def completion_stream_to_text(self, response: Any) -> str: ...
 
     @abstractmethod
-    def chat_response_to_text(self, response: Any) -> str:
-        ...
+    def chat_response_to_text(self, response: Any) -> str: ...
 
     @abstractmethod
-    def chat_stream_to_text(self, event_data: Dict) -> str:
-        ...
+    def chat_stream_to_text(self, event_data: Dict) -> str: ...
 
     @abstractmethod
-    def messages_to_oci_params(self, messages: Sequence[ChatMessage]) -> Dict[str, Any]:
-        ...
+    def messages_to_oci_params(
+        self, messages: Sequence[ChatMessage]
+    ) -> Dict[str, Any]: ...
 
 
 class CohereProvider(Provider):

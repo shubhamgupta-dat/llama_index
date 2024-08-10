@@ -418,8 +418,7 @@ class VllmServer(Vllm):
     def class_name(cls) -> str:
         return "VllmServer"
 
-    def __del__(self) -> None:
-        ...
+    def __del__(self) -> None: ...
 
     @llm_completion_callback()
     def complete(

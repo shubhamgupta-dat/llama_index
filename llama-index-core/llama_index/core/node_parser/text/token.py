@@ -1,4 +1,5 @@
 """Token splitter."""
+
 import logging
 from typing import Callable, List, Optional
 

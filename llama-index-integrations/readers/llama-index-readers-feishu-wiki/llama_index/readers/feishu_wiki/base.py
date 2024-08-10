@@ -1,4 +1,5 @@
 """Feishu wiki reader."""
+
 import json
 import os
 import time

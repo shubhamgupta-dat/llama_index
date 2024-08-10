@@ -140,17 +140,13 @@ for path_name, label in FOLDER_NAME_TO_LABEL.items():
             )
             if (
                 toc_path_name
-                not in mkdocs["nav"][examples_idx]["Examples"][label_idx][
-                    label
-                ]
+                not in mkdocs["nav"][examples_idx]["Examples"][label_idx][label]
             ):
-                mkdocs["nav"][examples_idx]["Examples"][label_idx][
-                    label
-                ].append(toc_path_name)
+                mkdocs["nav"][examples_idx]["Examples"][label_idx][label].append(
+                    toc_path_name
+                )
         if os.path.isdir(os.path.join(path_name, file_name)):
-            for root, dirs, files in os.walk(
-                os.path.join(path_name, file_name)
-            ):
+            for root, dirs, files in os.walk(os.path.join(path_name, file_name)):
                 for file in files:
                     if file.endswith(".ipynb"):
                         toc_path_name = "./" + os.path.join(
@@ -158,9 +154,9 @@ for path_name, label in FOLDER_NAME_TO_LABEL.items():
                         )
                         if (
                             toc_path_name
-                            not in mkdocs["nav"][examples_idx]["Examples"][
-                                label_idx
-                            ][label]
+                            not in mkdocs["nav"][examples_idx]["Examples"][label_idx][
+                                label
+                            ]
                         ):
                             mkdocs["nav"][examples_idx]["Examples"][label_idx][
                                 label
@@ -201,9 +197,7 @@ for folder in INTEGRATION_FOLDERS:
                 elif folder_name == "graph_stores":
                     folder_name = "storage/graph_stores"
 
-                full_path = os.path.join(
-                    "docs/docs/api_reference", folder_name
-                )
+                full_path = os.path.join("docs/docs/api_reference", folder_name)
                 module_name = import_path.split(".")[-1] + ".md"
                 os.makedirs(full_path, exist_ok=True)
                 with open(os.path.join(full_path, module_name), "w") as f:
@@ -219,31 +213,23 @@ for folder in INTEGRATION_FOLDERS:
                 if "storage" in folder_name:
                     label = "Storage"
                 else:
-                    label = INTEGRATION_FOLDER_TO_LABEL[
-                        import_path.split(".")[1]
-                    ]
+                    label = INTEGRATION_FOLDER_TO_LABEL[import_path.split(".")[1]]
 
                 label_idx = -1
-                for idx, item in enumerate(
-                    mkdocs["nav"][api_ref_idx]["API Reference"]
-                ):
+                for idx, item in enumerate(mkdocs["nav"][api_ref_idx]["API Reference"]):
                     if label in item:
                         label_idx = idx
                         break
 
                 if label_idx == -1:
-                    mkdocs["nav"][api_ref_idx]["API Reference"].append(
-                        {label: []}
-                    )
+                    mkdocs["nav"][api_ref_idx]["API Reference"].append({label: []})
 
                 toc_path_name = "./" + os.path.join(
                     "api_reference", folder_name, module_name
                 )
                 if (
                     toc_path_name
-                    not in mkdocs["nav"][api_ref_idx]["API Reference"][
-                        label_idx
-                    ][label]
+                    not in mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][label]
                 ):
                     # storage is a special case, multi-level
                     if label == "Storage":
@@ -254,18 +240,18 @@ for folder in INTEGRATION_FOLDERS:
                             existing_sub_label_idx,
                             existing_sub_label,
                         ) in enumerate(
-                            mkdocs["nav"][api_ref_idx]["API Reference"][
-                                label_idx
-                            ][label]
+                            mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
+                                label
+                            ]
                         ):
                             if sub_label in existing_sub_label:
                                 sub_label_idx = existing_sub_label_idx
                                 break
 
                         if sub_label_idx == -1:
-                            mkdocs["nav"][api_ref_idx]["API Reference"][
-                                label_idx
-                            ][label].append({sub_label: []})
+                            mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
+                                label
+                            ].append({sub_label: []})
 
                         if (
                             toc_path_name
@@ -273,22 +259,20 @@ for folder in INTEGRATION_FOLDERS:
                                 label_idx
                             ][label][sub_label_idx][sub_label]
                         ):
-                            mkdocs["nav"][api_ref_idx]["API Reference"][
-                                label_idx
-                            ][label][sub_label_idx][sub_label].append(
-                                toc_path_name
-                            )
+                            mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
+                                label
+                            ][sub_label_idx][sub_label].append(toc_path_name)
 
                         # sort per sub-label
-                        mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
-                            label
-                        ][sub_label_idx][sub_label] = sorted(
-                            mkdocs["nav"][api_ref_idx]["API Reference"][
-                                label_idx
-                            ][label][sub_label_idx][sub_label],
-                            key=lambda x: next(iter(x.keys()))
-                            if isinstance(x, dict)
-                            else x,
+                        mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][label][
+                            sub_label_idx
+                        ][sub_label] = sorted(
+                            mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
+                                label
+                            ][sub_label_idx][sub_label],
+                            key=lambda x: (
+                                next(iter(x.keys())) if isinstance(x, dict) else x
+                            ),
                         )
                     else:
                         mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
@@ -296,15 +280,9 @@ for folder in INTEGRATION_FOLDERS:
                         ].append(toc_path_name)
 
                 # maintain sorting per label
-                mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
-                    label
-                ] = sorted(
-                    mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
-                        label
-                    ],
-                    key=lambda x: next(iter(x.keys()))
-                    if isinstance(x, dict)
-                    else x,
+                mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][label] = sorted(
+                    mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][label],
+                    key=lambda x: next(iter(x.keys())) if isinstance(x, dict) else x,
                 )
 
 # add existing api reference pages to nav
@@ -331,9 +309,7 @@ for root, dirs, files in os.walk("docs/docs/api_reference"):
                 label = INTEGRATION_FOLDER_TO_LABEL[root.split("/")[-1]]
 
             label_idx = -1
-            for idx, item in enumerate(
-                mkdocs["nav"][api_ref_idx]["API Reference"]
-            ):
+            for idx, item in enumerate(mkdocs["nav"][api_ref_idx]["API Reference"]):
                 if label in item:
                     label_idx = idx
                     break
@@ -349,9 +325,7 @@ for root, dirs, files in os.walk("docs/docs/api_reference"):
                     existing_sub_label_idx,
                     existing_sub_label,
                 ) in enumerate(
-                    mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
-                        label
-                    ]
+                    mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][label]
                 ):
                     if sub_label in existing_sub_label:
                         sub_label_idx = existing_sub_label_idx
@@ -364,45 +338,35 @@ for root, dirs, files in os.walk("docs/docs/api_reference"):
 
                 if (
                     toc_path_name
-                    not in mkdocs["nav"][api_ref_idx]["API Reference"][
-                        label_idx
-                    ][label][sub_label_idx][sub_label]
-                ):
-                    mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
+                    not in mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
                         label
-                    ][sub_label_idx][sub_label].append(toc_path_name)
+                    ][sub_label_idx][sub_label]
+                ):
+                    mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][label][
+                        sub_label_idx
+                    ][sub_label].append(toc_path_name)
 
                 # sort per sub-label
                 mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][label][
                     sub_label_idx
                 ][sub_label] = sorted(
-                    mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
-                        label
-                    ][sub_label_idx][sub_label],
-                    key=lambda x: next(iter(x.keys()))
-                    if isinstance(x, dict)
-                    else x,
+                    mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][label][
+                        sub_label_idx
+                    ][sub_label],
+                    key=lambda x: next(iter(x.keys())) if isinstance(x, dict) else x,
                 )
             elif (
                 toc_path_name
-                not in mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
-                    label
-                ]
+                not in mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][label]
             ):
-                mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
-                    label
-                ].append(toc_path_name)
+                mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][label].append(
+                    toc_path_name
+                )
 
                 # sort per label
-                mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
-                    label
-                ] = sorted(
-                    mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][
-                        label
-                    ],
-                    key=lambda x: next(iter(x.keys()))
-                    if isinstance(x, dict)
-                    else x,
+                mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][label] = sorted(
+                    mkdocs["nav"][api_ref_idx]["API Reference"][label_idx][label],
+                    key=lambda x: next(iter(x.keys())) if isinstance(x, dict) else x,
                 )
 
 # sort the API Reference nav section
@@ -417,9 +381,7 @@ for idx, item in enumerate(mkdocs["nav"][examples_idx]["Examples"]):
         for key in item:
             mkdocs["nav"][examples_idx]["Examples"][idx][key] = sorted(
                 mkdocs["nav"][examples_idx]["Examples"][idx][key],
-                key=lambda x: next(iter(x.keys()))
-                if isinstance(x, dict)
-                else x,
+                key=lambda x: next(iter(x.keys())) if isinstance(x, dict) else x,
             )
 
 
@@ -429,9 +391,9 @@ for i, plugin in enumerate(mkdocs["plugins"]):
         for search_path in search_paths:
             if (
                 search_path
-                not in mkdocs["plugins"][i]["mkdocstrings"]["handlers"][
-                    "python"
-                ]["paths"]
+                not in mkdocs["plugins"][i]["mkdocstrings"]["handlers"]["python"][
+                    "paths"
+                ]
             ):
                 mkdocs["plugins"][i]["mkdocstrings"]["handlers"]["python"][
                     "paths"

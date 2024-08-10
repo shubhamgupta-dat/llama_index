@@ -19,6 +19,7 @@ The prompts used to generate the metadata are specifically aimed to help
 disambiguate the document or subsection from other similar documents or subsections.
 (similar with contrastive learning)
 """
+
 from typing import Any, Dict, List, Optional, Sequence, cast
 
 from llama_index.core.async_utils import DEFAULT_NUM_WORKERS, run_jobs

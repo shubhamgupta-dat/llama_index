@@ -2,7 +2,7 @@
 from abc import abstractmethod
 from typing import List, Optional
 
-from llama_index.core.llms import ChatMessage
+from llama_index.core.llms.llm import ChatMessage
 from llama_index.core.schema import BaseComponent
 
 

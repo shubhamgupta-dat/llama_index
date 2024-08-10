@@ -57,9 +57,11 @@ def _recursively_parse_adb_filter(filters: MetadataFilters) -> Union[str, None]:
         return None
     return f" {filters.condition} ".join(
         [
-            _build_filter_clause(filter_)
-            if isinstance(filter_, MetadataFilter)
-            else f"({_recursively_parse_adb_filter(filter_)})"
+            (
+                _build_filter_clause(filter_)
+                if isinstance(filter_, MetadataFilter)
+                else f"({_recursively_parse_adb_filter(filter_)})"
+            )
             for filter_ in filters.filters
         ]
     )

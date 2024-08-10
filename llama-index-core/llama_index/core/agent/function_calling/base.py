@@ -1,6 +1,5 @@
 """Function calling agent."""
 
-
 from llama_index.core.agent.runner.base import AgentRunner
 
 

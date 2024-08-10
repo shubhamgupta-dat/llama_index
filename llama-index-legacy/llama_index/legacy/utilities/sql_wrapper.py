@@ -1,4 +1,5 @@
 """SQL wrapper around SQLDatabase in langchain."""
+
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from sqlalchemy import MetaData, create_engine, insert, inspect, text

@@ -23,23 +23,38 @@ from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
+
 class NodeRequest(BaseModel):
     """
     A node request.
-    """ # noqa: E501
-    embeddings: Optional[List[Union[StrictFloat, StrictInt]]] = Field(default=None, description="A list of embeddings.")
-    entity_id: StrictStr = Field(description="The entity id in the form on an IRI, e.g. https://data.example.org/dataset/entity.")
-    metadata: Optional[Dict[str, Dict[str, Any]]] = Field(default=None, description="A map of metadata properties.")
-    node_id: StrictStr = Field(description="The node id generally expressed in the form of a UUID.")
+    """  # noqa: E501
+
+    embeddings: Optional[List[Union[StrictFloat, StrictInt]]] = Field(
+        default=None, description="A list of embeddings."
+    )
+    entity_id: StrictStr = Field(
+        description="The entity id in the form on an IRI, e.g. https://data.example.org/dataset/entity."
+    )
+    metadata: Optional[Dict[str, Dict[str, Any]]] = Field(
+        default=None, description="A map of metadata properties."
+    )
+    node_id: StrictStr = Field(
+        description="The node id generally expressed in the form of a UUID."
+    )
     text: Optional[StrictStr] = Field(default=None, description="The original text.")
-    __properties: ClassVar[List[str]] = ["embeddings", "entity_id", "metadata", "node_id", "text"]
+    __properties: ClassVar[List[str]] = [
+        "embeddings",
+        "entity_id",
+        "metadata",
+        "node_id",
+        "text",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -65,8 +80,7 @@ class NodeRequest(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -84,13 +98,13 @@ class NodeRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "embeddings": obj.get("embeddings"),
-            "entity_id": obj.get("entity_id"),
-            "metadata": obj.get("metadata"),
-            "node_id": obj.get("node_id"),
-            "text": obj.get("text")
-        })
+        _obj = cls.model_validate(
+            {
+                "embeddings": obj.get("embeddings"),
+                "entity_id": obj.get("entity_id"),
+                "metadata": obj.get("metadata"),
+                "node_id": obj.get("node_id"),
+                "text": obj.get("text"),
+            }
+        )
         return _obj
-
-

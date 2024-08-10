@@ -1,4 +1,5 @@
 """Optimization related classes and functions."""
+
 import logging
 from typing import Any, Dict, List, Optional
 

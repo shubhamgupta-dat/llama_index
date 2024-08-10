@@ -1,4 +1,5 @@
 """Vector store index types."""
+
 from enum import Enum
 
 

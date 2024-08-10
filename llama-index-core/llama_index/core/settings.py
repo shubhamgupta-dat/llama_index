@@ -9,7 +9,7 @@ from llama_index.core.base.embeddings.base import BaseEmbedding
 from llama_index.core.callbacks.base import BaseCallbackHandler, CallbackManager
 from llama_index.core.embeddings.utils import EmbedType, resolve_embed_model
 from llama_index.core.indices.prompt_helper import PromptHelper
-from llama_index.core.llms import LLM
+from llama_index.core.llms.llm import LLM
 from llama_index.core.llms.utils import LLMType, resolve_llm
 from llama_index.core.node_parser import NodeParser, SentenceSplitter
 from llama_index.core.schema import TransformComponent

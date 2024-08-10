@@ -17,6 +17,7 @@ import unittest
 
 from manager_client.models.filter import Filter
 
+
 class TestFilter(unittest.TestCase):
     """Filter unit test stubs"""
 
@@ -28,9 +29,9 @@ class TestFilter(unittest.TestCase):
 
     def make_instance(self, include_optional) -> Filter:
         """Test Filter
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included"""
         # uncomment below to create an instance of `Filter`
         """
         model = Filter()
@@ -53,5 +54,6 @@ class TestFilter(unittest.TestCase):
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

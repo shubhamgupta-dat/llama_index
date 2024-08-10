@@ -1,4 +1,5 @@
 """Test retriever tool."""
+
 from typing import List, Optional
 
 from llama_index.core.base.base_retriever import BaseRetriever

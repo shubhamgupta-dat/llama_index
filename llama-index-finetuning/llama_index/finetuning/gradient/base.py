@@ -20,8 +20,7 @@ class GradientFinetuneEngine(BaseLLMFinetuneEngine):
         name: str,
         rank: Optional[int] = None,
         workspace_id: Optional[str] = None,
-    ) -> None:
-        ...
+    ) -> None: ...
 
     @overload
     def __init__(
@@ -32,8 +31,7 @@ class GradientFinetuneEngine(BaseLLMFinetuneEngine):
         host: Optional[str] = None,
         model_adapter_id: str,
         workspace_id: Optional[str] = None,
-    ) -> None:
-        ...
+    ) -> None: ...
 
     def __init__(
         self,

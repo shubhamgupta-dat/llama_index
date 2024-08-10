@@ -1,6 +1,5 @@
 """Joint QA Summary graph."""
 
-
 from typing import List, Optional, Sequence
 
 from llama_index.core.base.embeddings.base import BaseEmbedding

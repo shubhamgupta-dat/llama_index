@@ -300,9 +300,9 @@ def ensure_relation_meta_schema(
             )
         id_to_label = {}
         for row_index in range(result.row_size()):
-            id_to_label[
-                result.row_values(row_index)[0].cast_primitive()
-            ] = result.row_values(row_index)[1].cast_primitive()
+            id_to_label[result.row_values(row_index)[0].cast_primitive()] = (
+                result.row_values(row_index)[1].cast_primitive()
+            )
 
         source_label, dest_label = id_to_label[src_id], id_to_label[dst_id]
 

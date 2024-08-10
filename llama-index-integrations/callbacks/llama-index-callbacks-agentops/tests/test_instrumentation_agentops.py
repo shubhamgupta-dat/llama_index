@@ -76,13 +76,11 @@ class MockLLM(CustomLLM):
 
     def complete(
         self, prompt: str, formatted: bool = False, **kwargs: Any
-    ) -> CompletionResponse:
-        ...
+    ) -> CompletionResponse: ...
 
     def stream_complete(
         self, prompt: str, formatted: bool = False, **kwargs: Any
-    ) -> Generator[CompletionResponse, None, None]:
-        ...
+    ) -> Generator[CompletionResponse, None, None]: ...
 
 
 class MockFunctionCallingLLM(FunctionCallingLLM):
@@ -99,48 +97,39 @@ class MockFunctionCallingLLM(FunctionCallingLLM):
 
     def complete(
         self, prompt: str, formatted: bool = False, **kwargs: Any
-    ) -> CompletionResponse:
-        ...
+    ) -> CompletionResponse: ...
 
     def stream_complete(
         self, prompt: str, formatted: bool = False, **kwargs: Any
-    ) -> Generator[CompletionResponse, None, None]:
-        ...
+    ) -> Generator[CompletionResponse, None, None]: ...
 
     def achat(
         self, messages: Sequence[ChatMessage], **kwargs: Any
-    ) -> Coroutine[Any, Any, ChatResponse]:
-        ...
+    ) -> Coroutine[Any, Any, ChatResponse]: ...
 
     def acomplete(
         self, prompt: str, formatted: bool = False, **kwargs: Any
-    ) -> Coroutine[Any, Any, CompletionResponse]:
-        ...
+    ) -> Coroutine[Any, Any, CompletionResponse]: ...
 
     def astream_chat(
         self, messages: Sequence[ChatMessage], **kwargs: Any
-    ) -> Coroutine[Any, Any, AsyncGenerator[ChatResponse, None]]:
-        ...
+    ) -> Coroutine[Any, Any, AsyncGenerator[ChatResponse, None]]: ...
 
     def astream_complete(
         self, prompt: str, formatted: bool = False, **kwargs: Any
-    ) -> Coroutine[Any, Any, AsyncGenerator[CompletionResponse, None]]:
-        ...
+    ) -> Coroutine[Any, Any, AsyncGenerator[CompletionResponse, None]]: ...
 
     def complete(
         self, prompt: str, formatted: bool = False, **kwargs: Any
-    ) -> CompletionResponse:
-        ...
+    ) -> CompletionResponse: ...
 
     def stream_chat(
         self, messages: Sequence[ChatMessage], **kwargs: Any
-    ) -> ChatResponseGen:
-        ...
+    ) -> ChatResponseGen: ...
 
     def stream_complete(
         self, prompt: str, formatted: bool = False, **kwargs: Any
-    ) -> ChatResponseGen:
-        ...
+    ) -> ChatResponseGen: ...
 
     @property
     def metadata(self) -> LLMMetadata:
@@ -225,8 +214,7 @@ class MockAgentWorker(BaseAgentWorker):
     ) -> TaskStepOutput:
         return self.stream_step(step=step, task=task, **kwargs)
 
-    def finalize_task(self, task: Task, **kwargs: Any) -> None:
-        ...
+    def finalize_task(self, task: Task, **kwargs: Any) -> None: ...
 
 
 @pytest.fixture()

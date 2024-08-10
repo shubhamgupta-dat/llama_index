@@ -1,4 +1,5 @@
 """monday.com reader."""
+
 from typing import Dict, List
 
 import requests

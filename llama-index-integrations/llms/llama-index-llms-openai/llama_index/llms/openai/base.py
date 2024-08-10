@@ -102,8 +102,7 @@ def llm_retry_decorator(f: Callable[[Any], Any]) -> Callable[[Any], Any]:
 class Tokenizer(Protocol):
     """Tokenizers support an encode function that returns a list of ints."""
 
-    def encode(self, text: str) -> List[int]:
-        ...
+    def encode(self, text: str) -> List[int]: ...
 
 
 def force_single_tool_call(response: ChatResponse) -> None:

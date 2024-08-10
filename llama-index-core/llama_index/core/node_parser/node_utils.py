@@ -1,6 +1,5 @@
 """General node utils."""
 
-
 import logging
 import uuid
 from typing import List, Optional, Protocol, runtime_checkable
@@ -20,8 +19,7 @@ logger = logging.getLogger(__name__)
 
 @runtime_checkable
 class IdFuncCallable(Protocol):
-    def __call__(self, i: int, doc: BaseNode) -> str:
-        ...
+    def __call__(self, i: int, doc: BaseNode) -> str: ...
 
 
 def default_id_func(i: int, doc: BaseNode) -> str:
